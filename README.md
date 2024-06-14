@@ -1,8 +1,23 @@
 ## Spring WebFlux/Java
 
+* Java 21
+* Springboot 3.3.0
+* Gradle 8.8
+
 Spring WebFlux API servers authorization using Auth0
 
 info: https://developer.auth0.com/resources/code-samples/full-stack/hello-world/basic-access-control/spa/react-javascript/spring-webflux-java
+
+### Springboot project setup
+
+create .env file with properties:
+
+```
+SERVER_PORT=6060
+SERVER_OKTA_OAUTH2_ISSUER=https://..../
+SERVER_OKTA_OAUTH2_AUDIENCE=https://.......
+CLIENT_ORIGIN_URL=http://localhost:4040
+```
 
 ### Auth0 Set Up
 
@@ -39,6 +54,31 @@ https://github.com/cdimascio/dotenv-java
 
 https://stackoverflow.com/questions/58549361/using-dotenv-files-with-spring-boot
 
+### Spring Actuator
+
+* [Spring Boot Actuator: Health check, Auditing, Metrics gathering and Monitoring](https://www.callicoder.com/spring-boot-actuator/#:~:text=You%20can%20enable%20or%20disable,the%20identifier%20for%20the%20endpoint)
+
+Endpoint ID Description:
+
+* info - Displays information about your application.
+* health - Displays your application’s health status.
+
+Enable info and health endpoint in *.yaml file
+
+```
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+```
+
+Actuator endpoints:
+
+* /actuator
+* /actuator/health
+* /actuator/info
+
 ### Gradle Versions Plugin
 
 Displays a report of the project dependencies that are up-to-date, exceed the latest version found, have upgrades, or
@@ -69,3 +109,24 @@ git add .
 git commit -m "Changing permission of gradlew"
 git push
 ```
+
+### Hosting Springboot app
+
+Render is a cloud platform that offers a variety of services for developers, including hosting for web applications,
+databases, and static sites. Render aims to simplify the process of deploying and scaling applications by providing a
+user-friendly interface and seamless integration with popular development tools.
+
+Deploy for Free - https://render.com/ <br>
+You can deploy instances of some Render services <br>
+link: https://docs.render.com/free
+
+Deploying a Spring Boot Application with Docker Image on Render <br>
+tutorial: https://medium.com/@nithinsudarsan/deploying-a-spring-boot-application-with-docker-image-on-render-com-9a87f5ce5f72
+
+### UptimeRobot: Monitor anything
+
+UptimeRobot is a website monitoring service that checks the status of your websites, servers, and other online services
+at regular intervals. It notifies you if any of your monitored services go down, helping you to quickly address any
+issues and minimize downtime.
+
+link: https://uptimerobot.com/ <br>

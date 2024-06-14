@@ -30,6 +30,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation("com.github.joselion:maybe:${maybeVersion}")
     implementation "com.google.code.findbugs:${googleCodeFindbugsVersion}"
     implementation("io.github.cdimascio:dotenv-java:${dotenvJavaVersion}")
