@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+    id 'checkstyle'
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
+    id 'se.solrike.sonarlint' version "${solRikeSonarlintVersion}"
+    id "com.github.ben-manes.versions" version "${githubBenManesVersion}"
+}
+
+group = 'com.example'
+version = '1.0.0'
+
+java {
+    sourceCompatibility = "${javaVersion}"
+}
+
+checkstyle {
+    toolVersion = "${checkstyleVersion}"
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation("com.github.joselion:maybe:${maybeVersion}")
+    implementation "com.google.code.findbugs:${googleCodeFindbugsVersion}"
+    implementation("io.github.cdimascio:dotenv-java:${dotenvJavaVersion}")
+    implementation("me.paulschwarz:spring-dotenv:${paulschwarzSpringDotenvVersion}")
+    implementation("com.okta.spring:okta-spring-boot-starter:${oktaSpringBootStarterVersion}")
+    implementation group: 'io.netty', name: 'netty-resolver-dns-native-macos', version: '4.1.111.Final', classifier: 'osx-aarch_64'
+
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    sonarlintPlugins("org.sonarsource.java:sonar-java-plugin:${sonarJavaPluginVersion}")
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

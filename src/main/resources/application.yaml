@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: app-okta-web-api-server
+
+server:
+  error:
+    whitelabel:
+      enabled: false
+  port: ${SERVER_PORT:8080}
+
+client:
+  origin-url: ${CLIENT_ORIGIN_URL}
+
+okta:
+  oauth2:
+    issuer: ${SERVER_OKTA_OAUTH2_ISSUER}
+    audience: ${SERVER_OKTA_OAUTH2_AUDIENCE}
