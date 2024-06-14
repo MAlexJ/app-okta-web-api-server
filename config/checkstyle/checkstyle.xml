@@ -48,13 +48,6 @@
 
     <!-- Imports -->
     <module name="AvoidStarImport" />
-    <module name="ImportOrder">
-      <property name="groups" value="/^java\./,javax,org,com" />
-      <property name="ordered" value="true" />
-      <property name="separated" value="true" />
-      <property name="sortStaticImportsAlphabetically" value="true" />
-      <property name="option" value="top" />
-    </module>
     <module name="RedundantImport" />
     <module name="UnusedImports" />
 
@@ -80,6 +73,5 @@
     <module name="ParenPad" />
     <module name="TypecastParenPad" />
     <module name="WhitespaceAfter" />
-    <module name="WhitespaceAround" />
   </module>
 </module>

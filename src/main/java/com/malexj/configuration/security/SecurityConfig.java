@@ -16,24 +16,23 @@ import org.springframework.security.web.server.util.matcher.ServerWebExchangeMat
 @EnableReactiveMethodSecurity
 public class SecurityConfig {
 
-    private final GlobalErrorHandler errorHandler;
+  private final GlobalErrorHandler errorHandler;
 
-    @Bean
-    public SecurityWebFilterChain securityWebFilterChain(final ServerHttpSecurity http) {
-        final var messages = Paths.apiPath().messagesPath();
-        final var secureMatchers = ServerWebExchangeMatchers.pathMatchers(
-                messages.protectedPath().build(),
-                messages.adminPath().build()
-        );
+  @Bean
+  public SecurityWebFilterChain securityWebFilterChain(final ServerHttpSecurity http) {
+    final var messages = Paths.apiPath().messagesPath();
+    final var secureMatchers =
+        ServerWebExchangeMatchers.pathMatchers(
+            messages.protectedPath().build(), messages.adminPath().build());
 
-        return http
-                .authorizeExchange(authz -> authz
-                        .matchers(secureMatchers).authenticated()
-                        .anyExchange().permitAll())
-                .cors(Customizer.withDefaults())
-                .oauth2ResourceServer(oauth2ResourceServer -> oauth2ResourceServer
-                        .authenticationEntryPoint(errorHandler::handleAuthenticationError)
-                        .jwt(Customizer.withDefaults()))
-                .build();
-    }
+    return http.authorizeExchange(
+            authz -> authz.matchers(secureMatchers).authenticated().anyExchange().permitAll())
+        .cors(Customizer.withDefaults())
+        .oauth2ResourceServer(
+            oauth2ResourceServer ->
+                oauth2ResourceServer
+                    .authenticationEntryPoint(errorHandler::handleAuthenticationError)
+                    .jwt(Customizer.withDefaults()))
+        .build();
+  }
 }
