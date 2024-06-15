@@ -130,3 +130,14 @@ at regular intervals. It notifies you if any of your monitored services go down,
 issues and minimize downtime.
 
 link: https://uptimerobot.com/ <br>
+
+### Spring log level
+
+link: https://medium.com/codex/spring-boot-logging-da61911ce8e6
+
+```
+logging:
+  level:
+    root: ${SERVER_ROOT_LOG_LEVEL:INFO}
+    org.springframework: ${SERVER_SPRING_LOG_LEVEL:INFO}
+```

@@ -2,6 +2,11 @@ spring:
   application:
     name: app-okta-web-api-server
 
+logging:
+  level:
+    root: ${SERVER_ROOT_LOG_LEVEL:INFO}
+    org.springframework: ${SERVER_SPRING_LOG_LEVEL:INFO}
+
 server:
   error:
     whitelabel:
